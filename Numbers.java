@@ -1,6 +1,6 @@
 public class Numbers {
 
-        private int randomNum;
+        private static int randomNum;
 
         public int getRandomNum () {
             return randomNum;
@@ -11,7 +11,7 @@ public class Numbers {
         }
 
         public void generateNumber () {
-            this.randomNum = (int) (Math.random() * 100);
+            randomNum = (int) (Math.random() * 100);
         }
 
         public boolean compareNumber ( int guess){
