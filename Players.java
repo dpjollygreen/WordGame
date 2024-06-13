@@ -26,7 +26,7 @@ public class Players extends Person {
 
     @Override
     public String toString() {
-        return "Players cash: $" + money;
+        return getFirstName() + "'s cash: $" + money;
     }
 
 }
