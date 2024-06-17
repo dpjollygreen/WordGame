@@ -17,7 +17,6 @@ public class Physical implements Award {
     }
     public int getRandomPrize() {
         int prize = (int) (Math.random() * 5);
-        prize = prize - 1;
         return prize;
     }
 }
