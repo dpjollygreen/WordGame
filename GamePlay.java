@@ -6,7 +6,7 @@ public class GamePlay {
 
     public static void main(String[] args) {
 
-        Numbers newNum = new Numbers();
+        Phrases newPhrase = new Phrases();
         Hosts newHost = new Hosts();
         Turn newTurn = new Turn();
         Players[] currentPlayers = new Players[3];
@@ -18,7 +18,6 @@ public class GamePlay {
 
         Scanner bringItIn = new Scanner(System.in);
 
-        newHost.randomizeNum();
 
         for(int i = 0; i < 3; i++) {
             System.out.print("Please enter your name: ");
@@ -54,7 +53,7 @@ public class GamePlay {
             choice = bringItIn.nextInt();
 
             if(choice == 0) {
-                newHost.randomizeNum();
+                newHost.newGamePhrase();
             }
         }
     }
