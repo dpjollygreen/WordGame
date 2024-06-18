@@ -3,13 +3,22 @@ import java.util.Scanner;
 public class Turn {
     public boolean takeTurn(Players player, Hosts host) {
 
-        Numbers newNum = new Numbers();
-        int guess = -1;
+        Phrases newPhrase = new Phrases();
+        String guess = "";
         Scanner bringItIn = new Scanner(System.in);
 
-        System.out.print(host.getFirstName() + ": take a guess at the random number 0-100 " + player.getFirstName());
-        guess = bringItIn.nextInt();
-        boolean numbersCompared = newNum.compareNumber(guess);
+        System.out.print(host.getFirstName() + ": guess a letter " + player.getFirstName());
+        guess = bringItIn.nextLine();
+
+        try {
+            newPhrase.findLetters(guess);
+        }
+        catch (MultipleLettersException mistake) {
+            System.out.println(mistake.getMessage());
+        }
+
+
+        boolean numbersCompared = newPhrase.compareNumber(guess);
         if(numbersCompared) {
             Money win = new Money();
             if((int) (Math.random() * 6) <= 3) {
