@@ -22,3 +22,4 @@ public class Hosts extends Person {
         newPhrase.newPhrase(phrase);
     }
 }
+
