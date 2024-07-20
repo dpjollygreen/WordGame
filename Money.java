@@ -12,3 +12,4 @@ public class Money implements Award {
         }
     }
 }
+
