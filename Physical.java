@@ -21,3 +21,4 @@ public class Physical implements Award {
         return prize;
     }
 }
+
