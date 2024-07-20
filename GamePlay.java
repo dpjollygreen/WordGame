@@ -13,7 +13,7 @@ public class GamePlay {
 
         // = new Players();
 
-        int guess = -1;
+        //int guess = -1;
         int choice = 0;
 
         Scanner bringItIn = new Scanner(System.in);
@@ -58,4 +58,6 @@ public class GamePlay {
         }
     }
 }//end of class
+
+
 
