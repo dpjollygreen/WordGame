@@ -5,3 +5,4 @@ public class MultipleLettersException extends Exception{
         return "More than one letter was entered";
     }
 }
+
