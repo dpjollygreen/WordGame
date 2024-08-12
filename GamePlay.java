@@ -11,6 +11,8 @@ public class GamePlay {
         Turn newTurn = new Turn();
         Players[] currentPlayers = new Players[3];
 
+        newPhrase.thePhrase();
+
         // = new Players();
 
         //int guess = -1;
@@ -44,8 +46,8 @@ public class GamePlay {
         while(choice != 1) {
 
             for (int i = 0; i < 3; i++) {
-            //    !newTurn.takeTurn(currentPlayers[i], newHost);}) {
-                if(newTurn.takeTurn(currentPlayers[i], newHost)){break;}
+            //    !newTurn.takeTurn(currentPlayers[i], newHost, newPhrase);}) {
+                if(newTurn.takeTurn(currentPlayers[i], newHost, newPhrase)){break;}
                 if(i == 2) { i = -1;}
             }
 

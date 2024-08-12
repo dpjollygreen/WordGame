@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class Hosts extends Person {
     public Hosts() {
-        super("Bob");
+        super("Host");
         Scanner bringItIn = new Scanner(System.in);
         String phrase;
 
@@ -10,6 +10,7 @@ public class Hosts extends Person {
         phrase = bringItIn.nextLine();
         Phrases newPhrase = new Phrases();
         newPhrase.newPhrase(phrase);
+        newPhrase.thePhrase();
     }
 
     public void newGamePhrase() {
@@ -20,6 +21,7 @@ public class Hosts extends Person {
         phrase = bringItIn.nextLine();
         Phrases newPhrase = new Phrases();
         newPhrase.newPhrase(phrase);
+        newPhrase.thePhrase();
     }
 }
 
