@@ -56,6 +56,7 @@ public class GamePlay {
 
             if(choice == 0) {
                 newHost.newGamePhrase();
+                newPhrase.thePhrase();
             }
         }
     }
