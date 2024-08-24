@@ -2,28 +2,31 @@ import java.util.Scanner;
 
 public class GamePlay {
 
-    private static Person player;
-
     public static void main(String[] args) {
 
         Phrases newPhrase = new Phrases();
         Hosts newHost = new Hosts();
         Turn newTurn = new Turn();
         Players[] currentPlayers = new Players[3];
+        GUI gui = new GUI();
+        //String playerList = "test";
+
+        //gui.playerList(playerList);
+
+        //playerList = " this";
+        //gui.playerList(playerList);
+        gui.addPlayer();
 
         newPhrase.thePhrase();
 
-        // = new Players();
-
-        //int guess = -1;
         int choice = 0;
 
         Scanner bringItIn = new Scanner(System.in);
 
-
         for(int i = 0; i < 3; i++) {
             System.out.print("Please enter your name: ");
             String firstName = bringItIn.nextLine();
+            gui.playerList(firstName);
 
             System.out.println("Would you like to enter a last Name? Y or N");
             String selection = bringItIn.nextLine();
@@ -38,8 +41,12 @@ public class GamePlay {
                System.out.println("Enter your last name: ");
                String lastName = bringItIn.nextLine();
                currentPlayers[i] = new Players(firstName, lastName);
+                //playerList += firstName + " ";
+                //gui.playerList(firstName);
             } else if (selection.equals("N")) {
                 currentPlayers[i] = new Players(firstName);
+                //playerList += firstName + " ";
+                //gui.playerList(firstName);
             }
         }
 
