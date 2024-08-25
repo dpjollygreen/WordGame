@@ -1,10 +1,19 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.*;
+import java.awt.event.ActionListener;
 
-public class GUI {
+public class GUI extends JFrame implements ActionListener {
     JFrame frame = new JFrame("Word Game");
     JLabel playerList = new JLabel();
-
+    JLabel hostData = new JLabel();
+    JLabel playingPhrase = new JLabel();
+    int MAX = 12;
+    int players = -1;
+    Hosts newHost = new Hosts();
+    Turn newTurn = new Turn();
+    Phrases newPhrase = new Phrases();
+    Players[] currentPlayers = new Players[MAX];
 
     public GUI() {
 
@@ -24,9 +33,73 @@ public class GUI {
         frame.repaint();
     }
 
-    public void addPlayer() {
-        JLabel newPlayer = new JLabel("New Player");
-        frame.add(newPlayer);
+    public void hostInfo() {
+        String LabelText = "Host: " + newHost.getFirstName();
+        hostData.setText(LabelText);
+        frame.add(hostData);
         frame.repaint();
+    }
+
+    public void addPlayerButton() {
+        JButton addPlayerButton = new JButton("Add Player");
+        frame.add(addPlayerButton);
+        addPlayerButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                players += 1;
+                String name = JOptionPane.showInputDialog("Enter your Name:");
+                playerList(name);
+                currentPlayers[players] = new Players(name);
+            }
+        });
+    }
+
+    public void addHostButton() {
+        JButton addHostButton = new JButton("Host");
+        frame.add(addHostButton);
+        addHostButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                String name = JOptionPane.showInputDialog("Enter your Name:");
+                newHost.setFirstName(name);
+                String phrase = JOptionPane.showInputDialog(newHost.getFirstName() + " enter a phrase:");
+                newPhrase.newPhrase(phrase);
+                newPhrase.thePhrase();
+                hostInfo();
+                playingPhrase();
+            }
+        });
+    }
+
+    public void addStartButton() {
+        JButton addStartButton = new JButton("Start game!!!");
+        frame.add(addStartButton);
+        addStartButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                for (int i = 0; i < players; i++) {
+                    String guess = JOptionPane.showInputDialog(currentPlayers[i].getFirstName() + " enter a letter:");;
+                    if(newTurn.takeTurn(currentPlayers[i], newHost, newPhrase, guess)){break;}
+                    if (i == players - 1) {i = -1;}
+                }
+            }
+        });
+    }
+
+    public void playingPhrase() {
+        String LabelText = "Phrase: " + newPhrase.getPlayingPhrase();
+        playingPhrase.setText(LabelText);
+        frame.add(playingPhrase);
+        frame.repaint();
+
+
+    }
+
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+
     }
 }

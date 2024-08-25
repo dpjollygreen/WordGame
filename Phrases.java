@@ -13,6 +13,10 @@ public class Phrases {
        // System.out.println(playingPhrase);
     }
 
+    public String getPlayingPhrase() {
+        return playingPhrase;
+    }
+
 
     public boolean findLetters(String letter) throws MultipleLettersException{
         if(letter.length() > 1) {

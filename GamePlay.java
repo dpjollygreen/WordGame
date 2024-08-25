@@ -1,71 +1,20 @@
+import javax.swing.*;
+import java.awt.*;
 import java.util.Scanner;
 
 public class GamePlay {
 
     public static void main(String[] args) {
 
-        Phrases newPhrase = new Phrases();
-        Hosts newHost = new Hosts();
-        Turn newTurn = new Turn();
-        Players[] currentPlayers = new Players[3];
         GUI gui = new GUI();
-        //String playerList = "test";
+        String playerList = "Players: ";
+        gui.playerList(playerList);
+        gui.hostInfo();
+        gui.addPlayerButton();
+        gui.addHostButton();
+        gui.playingPhrase();
+        gui.addStartButton();
 
-        //gui.playerList(playerList);
-
-        //playerList = " this";
-        //gui.playerList(playerList);
-        gui.addPlayer();
-
-        newPhrase.thePhrase();
-
-        int choice = 0;
-
-        Scanner bringItIn = new Scanner(System.in);
-
-        for(int i = 0; i < 3; i++) {
-            System.out.print("Please enter your name: ");
-            String firstName = bringItIn.nextLine();
-            gui.playerList(firstName);
-
-            System.out.println("Would you like to enter a last Name? Y or N");
-            String selection = bringItIn.nextLine();
-
-            while (!selection.equals("Y") && !selection.equals("N")) {
-                System.out.println("You have made an invalid selection.");
-                System.out.println("Would you like to enter a last Name? Y or N");
-                selection = bringItIn.nextLine();
-            }
-
-            if (selection.equals("Y")) {
-               System.out.println("Enter your last name: ");
-               String lastName = bringItIn.nextLine();
-               currentPlayers[i] = new Players(firstName, lastName);
-                //playerList += firstName + " ";
-                //gui.playerList(firstName);
-            } else if (selection.equals("N")) {
-                currentPlayers[i] = new Players(firstName);
-                //playerList += firstName + " ";
-                //gui.playerList(firstName);
-            }
-        }
-
-        while(choice != 1) {
-
-            for (int i = 0; i < 3; i++) {
-            //    !newTurn.takeTurn(currentPlayers[i], newHost, newPhrase);}) {
-                if(newTurn.takeTurn(currentPlayers[i], newHost, newPhrase)){break;}
-                if(i == 2) { i = -1;}
-            }
-
-            System.out.println("Would you like to play again? 0 for yes, 1 for no: ");
-            choice = bringItIn.nextInt();
-
-            if(choice == 0) {
-                newHost.newGamePhrase();
-                newPhrase.thePhrase();
-            }
-        }
     }
 }//end of class
 
