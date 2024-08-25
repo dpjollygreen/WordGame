@@ -24,6 +24,10 @@ public class Players extends Person {
         return money;
     }
 
+    public void addMoney(double reward) {
+        money += reward;
+    }
+
     @Override
     public String toString() {
         return getFirstName() + "'s cash: $" + money;

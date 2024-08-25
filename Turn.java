@@ -9,7 +9,7 @@ public class Turn {
 
         }
         catch (MultipleLettersException mistake) {
-            System.out.println(mistake.getMessage());
+            //System.out.println(mistake.getMessage());
             return false;
         }
     }

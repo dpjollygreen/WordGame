@@ -73,17 +73,23 @@ public class GUI extends JFrame implements ActionListener {
     }
 
     public void addStartButton() {
-        JButton addStartButton = new JButton("Start game!!!");
+        JButton addStartButton = new JButton("Start game!!");
         frame.add(addStartButton);
         addStartButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                for (int i = 0; i < players; i++) {
+                for (int i = 0; i < players + 1; i++) {
                     String guess = JOptionPane.showInputDialog(currentPlayers[i].getFirstName() + " enter a letter:");;
-                    if(newTurn.takeTurn(currentPlayers[i], newHost, newPhrase, guess)){break;}
-                    if (i == players - 1) {i = -1;}
+                    if(newTurn.takeTurn(currentPlayers[i], newHost, newPhrase, guess)){
+                        currentPlayers[i].addMoney(500);
+                        JOptionPane.showMessageDialog(null, currentPlayers[i].getFirstName() + " you win!!\nBrand New Car and $500\nTotal Winnings: $" + currentPlayers[i].getMoney());
+                        playingPhrase();
+                        break;}
+                    if (i == players) {i = -1;}
+                    playingPhrase();
                 }
+                JOptionPane.showConfirmDialog(null, "Would you like to play again?");
             }
         });
     }
