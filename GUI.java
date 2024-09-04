@@ -86,6 +86,9 @@ public class GUI extends JFrame implements ActionListener {
                         JOptionPane.showMessageDialog(null, currentPlayers[i].getFirstName() + " you win!!\nBrand New Car and $500\nTotal Winnings: $" + currentPlayers[i].getMoney());
                         playingPhrase();
                         break;}
+                    else{
+                        JOptionPane.showMessageDialog(null, currentPlayers[i].getFirstName() +" you guessed didn't win.");
+                    }
                     if (i == players) {i = -1;}
                     playingPhrase();
                 }
