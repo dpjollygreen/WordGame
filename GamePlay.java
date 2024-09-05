@@ -8,10 +8,13 @@ public class GamePlay {
 
         GUI gui = new GUI();
         String playerList = "Players: ";
+        gui.addMenu();
+        gui.addAboutMenu();
         gui.playerList(playerList);
         gui.hostInfo();
-        gui.addPlayerButton();
-        gui.addHostButton();
+        gui.addSave();
+        //gui.addPlayerButton();
+        //gui.addHostButton();
         gui.playingPhrase();
         gui.addStartButton();
 
