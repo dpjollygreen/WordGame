@@ -1,5 +1,10 @@
+import javax.sound.sampled.*;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
 import java.awt.event.*;
 import java.awt.event.ActionListener;
 
@@ -12,7 +17,9 @@ public class GUI extends JFrame implements ActionListener {
     String playIt = "";
     JLabel hostData = new JLabel();
     JLabel playingPhrase = new JLabel();
+    JPanel imagePanel = new JPanel();
     JCheckBox save = new JCheckBox("Save Messages");
+    BufferedImage winnings = null;
     int MAX = 12;
     int players = -1;
     Hosts newHost = new Hosts();
@@ -24,7 +31,7 @@ public class GUI extends JFrame implements ActionListener {
 
     public GUI() {
 
-        frame.setSize(250, 300);
+        frame.setSize(750, 500);
         frame.setVisible(true);
         frame.setLayout(new FlowLayout());
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -87,7 +94,17 @@ public class GUI extends JFrame implements ActionListener {
                     if(newTurn.takeTurn(currentPlayers[i], newHost, newPhrase, guess)){
                         currentPlayers[i].addMoney(500);
                         gamePlayData(currentPlayers[i].getFirstName() + " you win!!\nBrand New Car and $500\nTotal Winnings: $" + currentPlayers[i].getMoney());
-                        //JOptionPane.showMessageDialog(null, currentPlayers[i].getFirstName() + " you win!!\nBrand New Car and $500\nTotal Winnings: $" + currentPlayers[i].getMoney());
+                        try{
+                            winnings = new BufferedImage(50, 50, BufferedImage.TYPE_INT_RGB);
+                            winnings = ImageIO.read(new File("D:\\RioSalado\\CIS263AA\\Lesson 10\\car-63930_640.jpg"));
+                            //winnings.setSize();
+                        } catch (IOException c) {
+                            c.printStackTrace();
+                        }
+                        JLabel imageLabel = new JLabel(new ImageIcon(winnings));
+                        imageLabel.setSize(50, 50);
+                        imagePanel.add(imageLabel);
+                        frame.add(imagePanel);
                         playingPhrase();
                         break;}
                     else{
@@ -102,6 +119,19 @@ public class GUI extends JFrame implements ActionListener {
                     playIt = "";
                     JTextArea newTextArea = new JTextArea(playIt);
                     playerGameScroll.setViewportView(newTextArea);
+                    try {
+                        AudioInputStream audioStream = AudioSystem.getAudioInputStream(new File("D:\\RioSalado\\CIS263AA\\Lesson 10\\chant.wav"));
+                        Clip soundByte = AudioSystem.getClip();
+                        soundByte.open(audioStream);
+                        soundByte.start();
+                    } catch (IOException d) {
+                        d.printStackTrace();
+                    } catch (UnsupportedAudioFileException ex) {
+                        throw new RuntimeException(ex);
+                    } catch (LineUnavailableException ex) {
+                        throw new RuntimeException(ex);
+                    }
+
                     frame.add(playerGameScroll);
                     frame.repaint();
                 }
@@ -122,9 +152,24 @@ public class GUI extends JFrame implements ActionListener {
         JMenu aboutMenu = new JMenu("About");
         aboutMenu.setMnemonic(KeyEvent.VK_A);
         JMenuItem aboutMenuItem = new JMenuItem("Layout");
+        JMenuItem imageAttribute = new JMenuItem("Image Attribute");
+        JMenuItem soundAttribute = new JMenuItem("Sound Attribute");
+
         aboutMenu.add(aboutMenuItem);
         menuBar.add(aboutMenu);
+        aboutMenu.add(imageAttribute);
+        aboutMenu.add(soundAttribute);
         frame.setJMenuBar(menuBar);
+        imageAttribute.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(null, "https://pixabay.com/photos/car-vehicle-sports-car-auto-63930/,\nhttps://www.vecteezy.com/vector-art/20022441-creative-thinking-icon-for-your-website-design-logo-app-ui");
+            }
+        });
+        soundAttribute.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(null, "https://freesound.org/people/RTB45/sounds/191839/");
+            }
+        });
         aboutMenuItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 JOptionPane.showMessageDialog(null, "I chose this layout because it was the easiest to implement and keeps everything organized.", "About", JOptionPane.INFORMATION_MESSAGE);
